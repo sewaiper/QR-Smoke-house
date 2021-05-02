@@ -1,0 +1,75 @@
+{
+  "table": "2",
+  "user": {
+    "firstName": "Name",
+    "lastName": "Surname",
+    "phone": "+7-(xxx)-xxx-xx-xx"
+  },
+  "shishaBid": {
+    "status": "active",
+    "bowls": [
+      {
+        "type": "custom",
+        "tobacco": [
+          {
+            "id": "1",
+            "brand": "Afzal",
+            "flavour": "Blueberry",
+            "percent": "50"
+          },
+          {
+            "id": "7",
+            "brand": "Darkside",
+            "flavour": "Cosmo Flower",
+            "percent": "40"
+          },
+          {
+            "id": "9",
+            "brand": "Darkside",
+            "flavour": "Supernova",
+            "percent": "10"
+          }
+        ],
+        "parameters": {
+          "strength": 5,
+          "smokiness": 3
+        },
+        "comment": "Строго по рецепту!",
+        "bowlType": "Phunnel"
+      },
+      {
+        "type": "simple",
+        "tobacco": [
+          {
+            "flavour": "Double Apple",
+            "percent": "20"
+          },
+          {
+            "flavour": "Pineapple"
+          },
+          {
+            "flavour": "Mint",
+            "percent": "10"
+          }
+        ],
+        "parameters": {
+          "strength": "0",
+          "smokiness": "8"
+        },
+        "comment": "Хочу вкусное, дымное двойное яблоко с мятой. Можно ещё что-нибудь добавить",
+        "bowlType": "Any"
+      },
+      {
+        "type": "simple",
+        "tobacco": [],
+        "parameters": {
+          "strength": "6",
+          "smokiness": "7"
+        },
+        "comment": "Хочу что-нибудь фруктовое с мятой и орехами!",
+        "bowlType": "Any"
+      }
+    ]
+  },
+  "productBid": {}
+}

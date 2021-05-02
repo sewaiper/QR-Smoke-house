@@ -1,0 +1,29 @@
+{
+  "type": "custom",
+  "tobacco": [
+    {
+      "id": "1",
+      "brand": "Afzal",
+      "flavour": "Blueberry",
+      "percent": "50"
+    },
+    {
+      "id": "7",
+      "brand": "Darkside",
+      "flavour": "Cosmo Flower",
+      "percent": "40"
+    },
+    {
+      "id": "9",
+      "brand": "Darkside",
+      "flavour": "Supernova",
+      "percent": "10"
+    }
+  ],
+  "parameters": {
+    "strength": 5,
+    "smokiness": 3
+  },
+  "comment": "Строго по рецепту!",
+  "bowlType": "Phunnel"
+}
