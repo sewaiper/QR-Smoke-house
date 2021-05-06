@@ -4,17 +4,21 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_1.xsd">
 
-    <persistence-unit name="IndexPU">
+    <persistence-unit name="SmokehousePU">
+        <class>ru.sewaiper.smokehouse.model.employee.Employee</class>
+        <class>ru.sewaiper.smokehouse.model.employee.Passport</class>
+        <class>ru.sewaiper.smokehouse.model.employee.Experience</class>
+        <class>ru.sewaiper.smokehouse.model.employee.WorkSchedule</class>
+
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/index_test?serverTimezone=UTC"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/smokehouse?serverTimezone=UTC"/>
             <property name="javax.persistence.jdbc.user" value="sewaiper"/>
             <property name="javax.persistence.jdbc.password" value="1234"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             
             <property name="hibernate.connection.autocommit" value="false"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
-
-            <property name="packageToScan" value="ru.sewaiper.mysql.model"/>
         </properties>
     </persistence-unit>
 </persistence>

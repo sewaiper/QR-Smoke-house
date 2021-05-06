@@ -1,12 +1,14 @@
 package ru.sewaiper.smokehouse.model.bid;
 
+import ru.sewaiper.smokehouse.model.ShishaTobacco;
+
 import java.util.List;
 import java.util.Objects;
 
 public class ShishaBowl {
     protected String type;
     protected List<ShishaTobacco> tobacco;
-    protected ShishaParameters parameters;
+    protected BowlParameters parameters;
     protected String comment;
     protected String bowlType;
 
@@ -26,11 +28,11 @@ public class ShishaBowl {
         this.tobacco = tobacco;
     }
 
-    public ShishaParameters getParameters() {
+    public BowlParameters getParameters() {
         return parameters;
     }
 
-    public void setParameters(ShishaParameters parameters) {
+    public void setParameters(BowlParameters parameters) {
         this.parameters = parameters;
     }
 

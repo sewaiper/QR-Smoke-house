@@ -34,7 +34,6 @@ public class DefaultBidService implements BidService {
     @Override
     public void confirmBid(ObjectId bid, String type) throws BidServiceException {
         try {
-            Bid worker = repository.findById(bid).orElseThrow();
 
         }
         catch (NoSuchElementException e) {
