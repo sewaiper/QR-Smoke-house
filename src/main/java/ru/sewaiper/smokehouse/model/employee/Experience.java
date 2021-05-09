@@ -8,15 +8,12 @@ import java.time.LocalDate;
 @Access(AccessType.PROPERTY)
 public class Experience {
     @Basic
-    @Column(name = "position")
     protected String position;
 
     @Basic(fetch = FetchType.LAZY)
-    @Column(name = "first_workday", nullable = false)
     protected LocalDate firstWorkday;
 
     @Basic(fetch = FetchType.LAZY)
-    @Column(name = "last_workday")
     protected LocalDate lastWorkday;
 
     public Experience() {}

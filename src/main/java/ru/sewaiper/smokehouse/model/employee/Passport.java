@@ -8,15 +8,12 @@ import java.time.LocalDate;
 @Access(AccessType.PROPERTY)
 public class Passport {
     @Basic
-    @Column(name = "birthdate")
     protected LocalDate birthdate;
 
     @Basic
-    @Column(name = "series", nullable = false, length = 4)
     protected String series;
 
     @Basic
-    @Column(name = "number", nullable = false, length = 6)
     protected String number;
 
     public Passport() {}

@@ -6,13 +6,14 @@ import java.time.temporal.ChronoUnit;
 
 @Entity
 @Table(name = "employee")
-@Access(AccessType.PROPERTY)
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     protected long id;
 
     @Basic
+    @Access(AccessType.PROPERTY)
     @Column(name = "first_name", nullable = false)
     protected String firstName;
 
@@ -21,20 +22,35 @@ public class Employee {
     protected String patronymic;
 
     @Basic
+    @Access(AccessType.PROPERTY)
     @Column(name = "last_name", nullable = false)
     protected String lastName;
 
     @Embedded
+    @Access(AccessType.PROPERTY)
+    @AttributeOverrides({
+            @AttributeOverride(name = "birthdate", column = @Column(name = "birthdate")),
+            @AttributeOverride(name = "series", column = @Column(name = "series", nullable = false, length = 4)),
+            @AttributeOverride(name = "number", column = @Column(name = "number", nullable = false, length = 6))
+    })
     protected Passport passport;
 
     @Basic
+    @Access(AccessType.PROPERTY)
     @Column(name = "phone", length = 10)
     protected String phone;
 
     @Embedded
+    @Access(AccessType.PROPERTY)
+    @AttributeOverrides({
+            @AttributeOverride(name = "position", column = @Column(name = "position")),
+            @AttributeOverride(name = "firstWorkday", column = @Column(name = "first_workday", nullable = false)),
+            @AttributeOverride(name = "lastWorkday", column = @Column(name = "last_workday"))
+    })
     protected Experience experience;
 
-    @OneToOne(targetEntity = WorkSchedule.class, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "schedule")
     protected WorkSchedule workSchedule;
 
     public long getId() {

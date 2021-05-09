@@ -2,32 +2,38 @@ package ru.sewaiper.smokehouse.model.employee;
 
 import javax.persistence.*;
 import java.time.LocalTime;
+import java.util.Collection;
 
 @Entity
 @Table(name = "work_schedule")
-@Access(AccessType.PROPERTY)
 public class WorkSchedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     protected long id;
 
     @Basic
+    @Access(AccessType.PROPERTY)
     @Column(name = "start_workday")
     protected LocalTime startWorkday;
 
     @Basic
+    @Access(AccessType.PROPERTY)
     @Column(name = "end_workday")
     protected LocalTime endWorkday;
 
     @Basic
+    @Access(AccessType.PROPERTY)
     @Column(name = "lunch_break")
     protected LocalTime lunchBreak;
 
     @Basic
+    @Access(AccessType.PROPERTY)
     @Column(name = "workdays")
     protected int workdays;
 
     @Basic
+    @Access(AccessType.PROPERTY)
     @Column(name = "weekends")
     protected int weekends;
 

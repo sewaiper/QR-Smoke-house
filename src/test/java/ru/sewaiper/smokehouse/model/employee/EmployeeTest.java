@@ -16,40 +16,54 @@ import java.util.List;
 public class EmployeeTest {
 
     protected Passport getPassport() {
-        return new Passport(SmokehouseTestUtils.getRandomDate(
+        Passport passport = new Passport();
+
+        passport.setBirthdate(SmokehouseTestUtils.getRandomDate(
                 LocalDate.of(1985, 1, 1),
                 LocalDate.of(1998, 1, 1)
-        ),
-                SmokehouseTestUtils.getRandomNumberString(4),
-                SmokehouseTestUtils.getRandomNumberString(6));
+        ));
+        passport.setSeries(SmokehouseTestUtils.getRandomNumberString(4));
+        passport.setNumber(SmokehouseTestUtils.getRandomNumberString(6));
+
+        return passport;
     }
 
     protected Experience getExperience(boolean hasLastWorkday) {
-        LocalDate firstWorkday = SmokehouseTestUtils.getRandomDate(
+        Experience experience = new Experience();
+        experience.setFirstWorkday(SmokehouseTestUtils.getRandomDate(
                 LocalDate.of(2012, 1, 1),
                 LocalDate.of(2019, 1, 1)
-        );
+        ));
         LocalDate lastWorkday = null;
-        if(hasLastWorkday) lastWorkday = firstWorkday.plusYears(SmokehouseTestUtils.getRandomNumber(0, 3))
+        if(hasLastWorkday) lastWorkday = experience.getFirstWorkday()
+                .plusYears(SmokehouseTestUtils.getRandomNumber(0, 3))
                 .plusMonths(SmokehouseTestUtils.getRandomNumber(1, 12))
                 .plusDays(SmokehouseTestUtils.getRandomNumber(0, 15));
+        experience.setLastWorkday(lastWorkday);
 
-        return new Experience(SmokehouseTestUtils.getRandomString(20),
-                firstWorkday, lastWorkday);
+        experience.setPosition(SmokehouseTestUtils.getRandomString(20));
+
+        return experience;
     }
 
     protected WorkSchedule getWorkSchedule() {
-        LocalTime startWorkday = SmokehouseTestUtils.getRandomTime(
+        WorkSchedule workSchedule = new WorkSchedule();
+
+        workSchedule.setStartWorkday(SmokehouseTestUtils.getRandomTime(
                 LocalTime.of(8, 0),
                 LocalTime.of(12, 0)
-        );
-        LocalTime endWorkday = startWorkday.plusHours(SmokehouseTestUtils.getRandomNumber(6, 10));
-        LocalTime lunchBreak = LocalTime.of( (int)(startWorkday.getHour() +
-                SmokehouseTestUtils.getRandomNumber(2, 4)), startWorkday.getMinute());
-        int workdays = (int) SmokehouseTestUtils.getRandomNumber(1, 15);
-        int weekends = (int) SmokehouseTestUtils.getRandomNumber(0, workdays/2);
+        ));
 
-        return new WorkSchedule(startWorkday, endWorkday, lunchBreak, workdays, weekends);
+        workSchedule.setEndWorkday(workSchedule.getStartWorkday()
+                .plusHours(SmokehouseTestUtils.getRandomNumber(6, 10)));
+
+        workSchedule.setLunchBreak(LocalTime.of( (int)(workSchedule.getStartWorkday().getHour() +
+                SmokehouseTestUtils.getRandomNumber(2, 4)), workSchedule.getStartWorkday().getMinute()));
+
+        workSchedule.setWorkdays((int) SmokehouseTestUtils.getRandomNumber(1, 15));
+        workSchedule.setWeekends((int) SmokehouseTestUtils.getRandomNumber(0, workSchedule.getWorkdays()/2));
+
+        return workSchedule;
     }
 
     protected Employee getEmployee() {
@@ -91,6 +105,9 @@ public class EmployeeTest {
     @Test
     public void probe() {
         EntityManager em = entityManagerFactory.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(getEmployee());
+        em.getTransaction().commit();
         em.close();
     }
 }
