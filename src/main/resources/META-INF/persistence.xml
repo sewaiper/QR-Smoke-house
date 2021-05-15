@@ -9,6 +9,17 @@
         <class>ru.sewaiper.smokehouse.model.employee.Passport</class>
         <class>ru.sewaiper.smokehouse.model.employee.Experience</class>
         <class>ru.sewaiper.smokehouse.model.employee.WorkSchedule</class>
+        <class>ru.sewaiper.smokehouse.model.customer.Customer</class>
+        <class>ru.sewaiper.smokehouse.model.table.WorkTable</class>
+        <class>ru.sewaiper.smokehouse.model.order.Order</class>
+        <class>ru.sewaiper.smokehouse.model.tobacco.Tobacco</class>
+        <class>ru.sewaiper.smokehouse.model.tobacco.TobaccoConsumption</class>
+        <class>ru.sewaiper.smokehouse.model.tobacco.TobaccoManufacturer</class>
+        <class>ru.sewaiper.smokehouse.model.product.ArticleCategory</class>
+        <class>ru.sewaiper.smokehouse.model.product.ArticleManufacturer</class>
+        <class>ru.sewaiper.smokehouse.model.product.Article</class>
+        <class>ru.sewaiper.smokehouse.model.product.Product</class>
+        <class>ru.sewaiper.smokehouse.model.product.ProductConsumption</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
@@ -16,7 +27,9 @@
             <property name="javax.persistence.jdbc.user" value="sewaiper"/>
             <property name="javax.persistence.jdbc.password" value="1234"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            
+
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.connection.autocommit" value="false"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
         </properties>

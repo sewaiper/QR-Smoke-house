@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Embeddable
-@Table(name = "employee")
 @Access(AccessType.PROPERTY)
 public class Experience {
     @Basic
