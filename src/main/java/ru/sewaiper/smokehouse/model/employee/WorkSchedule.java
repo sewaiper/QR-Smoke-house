@@ -2,10 +2,9 @@ package ru.sewaiper.smokehouse.model.employee;
 
 import javax.persistence.*;
 import java.time.LocalTime;
-import java.util.Collection;
 
 @Entity
-@Table(name = "work_schedule")
+@Table(name = "work_schedules")
 public class WorkSchedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
