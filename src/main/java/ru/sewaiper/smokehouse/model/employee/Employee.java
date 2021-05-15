@@ -1,11 +1,14 @@
 package ru.sewaiper.smokehouse.model.employee;
 
+import ru.sewaiper.smokehouse.model.order.Order;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Collection;
 
 @Entity
-@Table(name = "employee")
+@Table(name = "employees")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,8 +33,8 @@ public class Employee {
     @Access(AccessType.PROPERTY)
     @AttributeOverrides({
             @AttributeOverride(name = "birthdate", column = @Column(name = "birthdate")),
-            @AttributeOverride(name = "series", column = @Column(name = "series", nullable = false, length = 4)),
-            @AttributeOverride(name = "number", column = @Column(name = "number", nullable = false, length = 6))
+            @AttributeOverride(name = "series", column = @Column(name = "passport_series", nullable = false, length = 4)),
+            @AttributeOverride(name = "number", column = @Column(name = "passport_number", nullable = false, length = 6))
     })
     protected Passport passport;
 
@@ -49,9 +52,13 @@ public class Employee {
     })
     protected Experience experience;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "schedule")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinColumn(name = "work_schedule_id")
     protected WorkSchedule workSchedule;
+
+    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @Access(AccessType.PROPERTY)
+    protected Collection<Order> orders;
 
     public long getId() {
         return id;
@@ -113,6 +120,14 @@ public class Employee {
         this.workSchedule = workSchedule;
     }
 
+    public Collection<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Collection<Order> orders) {
+        this.orders = orders;
+    }
+
     public boolean isWorkDay(LocalDate date) {
         LocalDate firstWorkday = this.getExperience().getFirstWorkday();
         WorkSchedule activeSchedule = this.getWorkSchedule();
@@ -136,8 +151,6 @@ public class Employee {
                 ", lastName='" + lastName + '\'' +
                 ", passport=" + passport +
                 ", phone='" + phone + '\'' +
-                ", experience=" + experience +
-                ", workSchedule=" + workSchedule +
-                '}';
+                ", experience=" + experience + '}';
     }
 }
